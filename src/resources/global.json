@@ -1,0 +1,9 @@
+{
+  "SYSTEM": {
+    "TABLET_WIDTH": 870,
+    "MOBILE_WIDTH": 480
+  },
+  "GUI": {
+    "LIGHT_BLUE": "#52b2db"
+  }
+}
