@@ -14,12 +14,3 @@
 		transform: rotate(360deg);
 	}
 }
-
-a {
-	color: #fff;
-	text-decoration: none;
-}
-
-a:hover {
-	cursor: pointer;
-}

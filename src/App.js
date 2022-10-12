@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Landing from "./components/Landing";
 import global from "./resources/global.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,13 +8,19 @@ import {
 	faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 
+import "./resources/styles.css";
 import "./App.css";
 
 export default function App() {
+	const cursorDotRef = useRef();
+	const cursorCircleRef = useRef();
+
 	return (
 		<>
-			{/* <CustomCursor /> */}
-			<Socials />
+			<Socials
+				cursorDotRef={cursorDotRef}
+				cursorCircleRef={cursorCircleRef}
+			/>
 			<div
 				style={{
 					width: "100vw",
@@ -22,13 +28,17 @@ export default function App() {
 					backgroundColor: global.GUI.LIGHT_BLUE,
 				}}
 			>
+				<CustomCursor
+					cursorDotRef={cursorDotRef}
+					cursorCircleRef={cursorCircleRef}
+				/>
 				<Landing />
 			</div>
 		</>
 	);
 }
 
-function CustomCursor() {
+function CustomCursor({ cursorCircleRef, cursorDotRef }) {
 	const [clientX, setClientX] = useState(-200);
 	const [clientY, setClientY] = useState(-200);
 	const [distanceX, setDistanceX] = useState(50);
@@ -51,10 +61,33 @@ function CustomCursor() {
 		setCenterY(100 - centerY);
 	});
 
-	return <div className="cursor-dot"></div>;
+	return (
+		<div
+			style={{
+				position: "fixed",
+				top: clientY,
+				left: clientX,
+				zIndex: 1000,
+				pointerEvents: "none",
+			}}
+		>
+			<div className="cursor-dot" ref={cursorDotRef}></div>
+			<div className="cursor-dot bigger" ref={cursorCircleRef}></div>
+		</div>
+	);
 }
 
-function Socials() {
+function Socials({ cursorDotRef, cursorCircleRef }) {
+	function handleMouseEnter() {
+		cursorCircleRef.current.classList.add("blurred");
+		cursorDotRef.current.style.display = "none";
+	}
+
+	function handleMouseLeave() {
+		cursorCircleRef.current.classList.remove("blurred");
+		cursorDotRef.current.style.display = "initial";
+	}
+
 	return (
 		<div
 			style={{
@@ -78,6 +111,8 @@ function Socials() {
 					icon={faLinkedin}
 					size="xl"
 					className="brand-icon"
+					onMouseEnter={() => handleMouseEnter()}
+					onMouseLeave={() => handleMouseLeave()}
 				/>
 			</a>
 
@@ -90,6 +125,8 @@ function Socials() {
 					icon={faGithub}
 					size="xl"
 					className="brand-icon"
+					onMouseEnter={() => handleMouseEnter()}
+					onMouseLeave={() => handleMouseLeave()}
 				/>
 			</a>
 			<a
@@ -101,6 +138,8 @@ function Socials() {
 					icon={faTwitter}
 					size="xl"
 					className="brand-icon"
+					onMouseEnter={() => handleMouseEnter()}
+					onMouseLeave={() => handleMouseLeave()}
 				/>
 			</a>
 		</div>
