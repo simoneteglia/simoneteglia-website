@@ -32,12 +32,12 @@ const HtmlContent = (props) => {
 	};
 
 	return (
-		<Html fullscreen style={{ pointerEvents: "none" }}>
+		<Html fullscreen>
 			<div
 				style={{
 					width: "100%",
 					height: "100vh",
-					zIndex: "10",
+					zIndex: 10,
 					position: "absolute",
 					top: -props.top * 2000,
 				}}
@@ -198,9 +198,10 @@ const HtmlContent = (props) => {
 								flex: "1 1 300px",
 								height: "80%",
 								backgroundColor: "pink",
+								textAlign: "center",
 							}}
 						>
-							side channel attack
+							side channel <br /> attack
 						</div>
 					</div>
 				</div>

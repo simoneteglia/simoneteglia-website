@@ -11,6 +11,11 @@ a:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transition: font-size 0.1s linear;
+}
+
+.project-card:hover {
+	font-size: 1.5em;
 }
 
 .cursor-dot {
