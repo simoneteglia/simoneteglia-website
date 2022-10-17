@@ -7,7 +7,18 @@ import global from "../resources/global.json";
 import { faGroupArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 
 export default function Tires({ floating }) {
-	return <>{floating ? <FloatingTires /> : <SingleTire />}</>;
+	return (
+		<>
+			{floating ? (
+				<FloatingTires />
+			) : (
+				<SingleTire
+					position={[0, -4, -0.5]}
+					rotation={[-0.5, 1, -1.8]}
+				/>
+			)}
+		</>
+	);
 }
 
 function FloatingTires() {
@@ -156,8 +167,8 @@ function SingleTire(props) {
 	);
 
 	return (
-		<group ref={group} {...props} dispose={null} position={[0, -0.5, -0.8]}>
-			<group rotation={[-Math.PI / 2, 0, -0.3]}>
+		<group ref={group} {...props} dispose={null}>
+			<group>
 				<group
 					position={[0.08, -0.07, 0.64]}
 					rotation={[-1.57, 1.14, -0.01]}

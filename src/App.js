@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Landing from "./components/Landing";
 import global from "./resources/global.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -45,29 +45,43 @@ function CustomCursor({ cursorCircleRef, cursorDotRef }) {
 	const [centerX, setCenterX] = useState(50);
 	const [centerY, setCenterY] = useState(50);
 
-	document.addEventListener("mousemove", (e) => {
-		setClientX(e.clientX);
-		setClientY(e.clientY);
-		const { x, y } = e;
-		let distanceX =
-			(Math.abs(x - window.innerWidth / 2) / (window.innerWidth / 2)) *
-			100;
-		setDistanceX(distanceX);
+	useEffect(() => {
+		document.addEventListener("mousemove", (e) => {
+			setClientX(e.clientX);
+			setClientY(e.clientY);
+			const { x, y } = e;
+			let distanceX =
+				(Math.abs(x - window.innerWidth / 2) /
+					(window.innerWidth / 2)) *
+				100;
+			setDistanceX(distanceX);
 
-		let centerX = (x / window.innerWidth) * 100;
-		setCenterX(100 - centerX);
+			let centerX = (x / window.innerWidth) * 100;
+			setCenterX(100 - centerX);
 
-		let centerY = (y / window.innerHeight) * 100;
-		setCenterY(100 - centerY);
-	});
+			let centerY = (y / window.innerHeight) * 100;
+			setCenterY(100 - centerY);
+		});
+
+		document.addEventListener("mousedown", (e) => {
+			cursorCircleRef.current.classList.add("blurred");
+			cursorDotRef.current.style.display = "none";
+		});
+
+		document.addEventListener("mouseup", (e) => {
+			cursorCircleRef.current.classList.remove("blurred");
+			cursorDotRef.current.style.display = "initial";
+		});
+	}, []);
 
 	return (
 		<div
+			className="pointer"
 			style={{
 				position: "fixed",
 				top: clientY,
 				left: clientX,
-				zIndex: 1000,
+				zIndex: 2000,
 				pointerEvents: "none",
 			}}
 		>

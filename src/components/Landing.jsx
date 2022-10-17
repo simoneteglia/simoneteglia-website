@@ -82,7 +82,7 @@ const HtmlContent = (props) => {
 						Hi ! I'm a junior front-end developer and a computer
 						engineer student based in rome
 					</p>
-					<p>*and f1 addicted</p>
+					<p className="text">*and f1 addicted</p>
 				</div>
 			</div>
 			{/**
@@ -208,12 +208,13 @@ const Composition = () => {
 		const r3 = scroll.range(2 / 3, 1 / 3);
 		const offset = -1 - r1 - 1 - r2 - 1 - r3;
 		const radius = 2;
-		state.camera.position.set(
-			Math.sin((offset * Math.PI) / 2) * radius,
-			0,
-			Math.cos((offset * Math.PI) / 2) * radius
-		);
+		// state.camera.position.set(
+		// 	Math.sin((offset * Math.PI) / 2) * radius,
+		// 	0,
+		// 	Math.cos((offset * Math.PI) / 2) * radius
+		// );
 		state.camera.lookAt(0, 0, 0);
+		state.camera.position.set(0, offset * radius, 0);
 		setTop(scroll.offset);
 	});
 
