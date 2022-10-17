@@ -7,6 +7,11 @@ a:hover {
 	cursor: pointer;
 }
 
+.text::selection {
+	color: deepskyblue;
+	background-color: yellow;
+}
+
 .project-card {
 	display: flex;
 	justify-content: center;

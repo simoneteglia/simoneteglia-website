@@ -60,6 +60,7 @@ const HtmlContent = (props) => {
 					}}
 				>
 					<h1
+						className="text"
 						style={{
 							fontSize:
 								windowSize > global.SYSTEM.TABLET_WIDTH
@@ -71,6 +72,7 @@ const HtmlContent = (props) => {
 						<br /> TEGLIA
 					</h1>
 					<p
+						className="text"
 						style={{
 							fontSize: windowSize > 870 ? "40px" : "30px",
 							maxWidth: "25ch",
@@ -109,6 +111,7 @@ const HtmlContent = (props) => {
 					}}
 				>
 					<h1
+						className="text"
 						style={{
 							fontSize:
 								windowSize > global.SYSTEM.TABLET_WIDTH
@@ -120,6 +123,7 @@ const HtmlContent = (props) => {
 						computer science
 					</h1>
 					<p
+						className="text"
 						style={{
 							fontSize: windowSize > 870 ? "40px" : "30px",
 							maxWidth: "30ch",
@@ -158,6 +162,7 @@ const HtmlContent = (props) => {
 					}}
 				>
 					<h1
+						className="text"
 						style={{
 							fontSize:
 								windowSize > global.SYSTEM.TABLET_WIDTH
