@@ -13,8 +13,8 @@ export default function Tires({ floating }) {
 				<FloatingTires />
 			) : (
 				<SingleTire
-					position={[0, -4, -0.5]}
-					rotation={[-0.5, 1, -1.8]}
+					position={[0, -4.65, -0.5]}
+					rotation={[-0.3, 1, -1.5]}
 				/>
 			)}
 		</>
@@ -142,6 +142,17 @@ function SingleTire(props) {
 	const group = useRef();
 	const [distanceX, setDistanceX] = useState(50);
 	const [distanceY, setDistanceY] = useState(50);
+
+	useFrame((state) => {
+		console.log(Math.sin(state.clock.elapsedTime));
+		if (group) {
+			group.current.position.z +=
+				Math.sin(state.clock.elapsedTime) / 1000;
+
+			group.current.rotation.z += 0.001;
+			group.current.rotation.x += 0.0005;
+		}
+	});
 
 	useEffect(() => {
 		document.addEventListener(
