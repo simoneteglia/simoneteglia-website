@@ -23,7 +23,7 @@ export default function ProjectCard({ title, bgColor }) {
 				}
 			}}
 		>
-			{title}
+			<p style={{ maxWidth: "10ch" }}>{title}</p>
 		</div>
 	);
 }
