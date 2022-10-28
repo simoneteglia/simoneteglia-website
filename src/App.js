@@ -7,13 +7,32 @@ import {
 	faLinkedin,
 	faGithub,
 } from "@fortawesome/free-brands-svg-icons";
+import script from "./python/pixelator.py";
 
 import "./resources/styles.css";
 import "./App.css";
 
+// const runScript = async (code) => {
+// 	const pyodide = await window.loadPyodide({
+// 		indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/",
+// 	});
+
+// 	return await pyodide.runPythonAsync(code);
+// };
+
 export default function App() {
+	const [output, setOutput] = useState("loading...");
 	const cursorDotRef = useRef();
 	const cursorCircleRef = useRef();
+
+	// useEffect(() => {
+	// 	const run = async () => {
+	// 		const scriptText = await (await fetch(script)).text();
+	// 		const out = await runScript(scriptText);
+	// 		setOutput(out);
+	// 	};
+	// 	run();
+	// }, []);
 
 	return (
 		<>

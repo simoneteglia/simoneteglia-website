@@ -142,7 +142,6 @@ const HtmlContent = (props) => {
 			<div
 				style={{
 					width: "100%",
-					height: "150%",
 					zIndex: "10",
 					position: "absolute",
 					top:
@@ -172,17 +171,7 @@ const HtmlContent = (props) => {
 					>
 						My recent works
 					</h1>
-					<div
-						id="project-section"
-						style={{
-							width: "100%",
-							minHeight: "70vh",
-							display: "flex",
-							alignItems: "center",
-							gap: "3vw",
-							flexWrap: "wrap",
-						}}
-					>
+					<div id="project-section">
 						<ProjectCard title="ascoltale" bgColor="#000" />
 						<ProjectCard title="robot escape" bgColor="blue" />
 						<ProjectCard
@@ -252,7 +241,7 @@ function Effects() {
 							? 0.01
 							: 0.02
 					}
-					bokehScale={2}
+					bokehScale={50}
 					height={480}
 				/>
 				<Noise opacity={0.25} />
@@ -273,7 +262,7 @@ const Landing3D = () => {
 		>
 			<Suspense fallback={<CanvasFallback />}>
 				<color args={["#136EB2"]} attach="background" />
-				<ScrollControls pages={1} damping={3}>
+				<ScrollControls pages={1} damping={5}>
 					<Composition />
 				</ScrollControls>
 				<Effects />
