@@ -18,7 +18,7 @@ import { Suspense } from "react";
 
 import global from "../resources/global.json";
 import "../resources/styles.css";
-import ProjectCard from "./ProjectCard";
+import ProjectRow from "./ProjectRow";
 import Tires from "./Tires";
 
 const akiraFont = "Akira";
@@ -34,7 +34,7 @@ const HtmlContent = (props) => {
 	};
 
 	return (
-		<Html fullscreen>
+		<Html fullscreen style={{ height: "300vh" }}>
 			{/**
 			 * FIRST
 			 * PAGE
@@ -44,8 +44,7 @@ const HtmlContent = (props) => {
 					width: "100%",
 					height: "100vh",
 					zIndex: 10,
-					position: "absolute",
-					top: -props.top * 2000,
+					// top: -props.top * 2000,
 				}}
 			>
 				<div
@@ -94,8 +93,7 @@ const HtmlContent = (props) => {
 					width: "100%",
 					height: "100vh",
 					zIndex: "10",
-					position: "absolute",
-					top: window.innerHeight - window.innerHeight * props.top,
+					// top: window.innerHeight - window.innerHeight * props.top,
 				}}
 			>
 				<div
@@ -142,10 +140,10 @@ const HtmlContent = (props) => {
 			<div
 				style={{
 					width: "100%",
+					height: "100vh",
 					zIndex: "10",
-					position: "absolute",
-					top:
-						2 * window.innerHeight - window.innerHeight * props.top,
+					// top:
+					// 2 * window.innerHeight - window.innerHeight * props.top,
 				}}
 			>
 				<div
@@ -172,13 +170,13 @@ const HtmlContent = (props) => {
 						My recent works
 					</h1>
 					<div id="project-section">
-						<ProjectCard title="ascoltale" bgColor="#000" />
-						<ProjectCard title="robot escape" bgColor="blue" />
-						<ProjectCard
+						<ProjectRow title="ascoltale" bgColor="#000" />
+						<ProjectRow title="robot escape" bgColor="blue" />
+						<ProjectRow
 							title="side channel attack"
 							bgColor="pink"
 						/>
-						<ProjectCard title="css art" bgColor="darkmagenta" />
+						<ProjectRow title="css art" bgColor="darkmagenta" />
 					</div>
 				</div>
 			</div>
@@ -262,7 +260,7 @@ const Landing3D = () => {
 		>
 			<Suspense fallback={<CanvasFallback />}>
 				<color args={["#136EB2"]} attach="background" />
-				<ScrollControls pages={1} damping={5}>
+				<ScrollControls pages={2} damping={5}>
 					<Composition />
 				</ScrollControls>
 				<Effects />

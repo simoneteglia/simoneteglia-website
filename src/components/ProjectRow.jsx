@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../resources/styles.css";
 
-export default function ProjectCard({ title, bgColor }) {
+export default function ProjectRow({ title, bgColor }) {
 	return (
 		<div
 			style={{
