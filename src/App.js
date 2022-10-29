@@ -51,7 +51,10 @@ export default function App() {
 					cursorDotRef={cursorDotRef}
 					cursorCircleRef={cursorCircleRef}
 				/>
-				<Landing />
+				<Landing
+					cursorDotRef={cursorDotRef}
+					cursorCircleRef={cursorCircleRef}
+				/>
 			</div>
 		</>
 	);

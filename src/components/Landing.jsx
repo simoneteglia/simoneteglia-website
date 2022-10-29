@@ -5,6 +5,7 @@ import {
 	Noise,
 	DepthOfField,
 	EffectComposer,
+	Vignette,
 } from "@react-three/postprocessing";
 import {
 	Environment,
@@ -20,18 +21,25 @@ import global from "../resources/global.json";
 import "../resources/styles.css";
 import ProjectRow from "./ProjectRow";
 import Tires from "./Tires";
+import ProjectCover from "./ProjectCover";
 
 const akiraFont = "Akira";
 
 const HtmlContent = (props) => {
+	const [projectToShow, setProjectToShow] = useState(null);
 	const [windowSize, setWindowSize] = useState(window.innerWidth);
+
 	useEffect(() => {
 		window.addEventListener("resize", handleResize);
-	});
+	}, []);
 
 	const handleResize = () => {
 		setWindowSize(window.innerWidth);
 	};
+
+	useEffect(() => {
+		console.log(projectToShow);
+	}, [projectToShow]);
 
 	return (
 		<Html fullscreen style={{ height: "300vh" }}>
@@ -44,7 +52,6 @@ const HtmlContent = (props) => {
 					width: "100%",
 					height: "100vh",
 					zIndex: 10,
-					// top: -props.top * 2000,
 				}}
 			>
 				<div
@@ -93,7 +100,6 @@ const HtmlContent = (props) => {
 					width: "100%",
 					height: "100vh",
 					zIndex: "10",
-					// top: window.innerHeight - window.innerHeight * props.top,
 				}}
 			>
 				<div
@@ -137,13 +143,11 @@ const HtmlContent = (props) => {
 			 * THIRD
 			 * PAGE
 			 */}
-			<div
+			<section
 				style={{
 					width: "100%",
 					height: "100vh",
 					zIndex: "10",
-					// top:
-					// 2 * window.innerHeight - window.innerHeight * props.top,
 				}}
 			>
 				<div
@@ -169,22 +173,77 @@ const HtmlContent = (props) => {
 					>
 						My recent works
 					</h1>
-					<div id="project-section">
-						<ProjectRow title="ascoltale" bgColor="#000" />
-						<ProjectRow title="robot escape" bgColor="blue" />
-						<ProjectRow
-							title="side channel attack"
-							bgColor="pink"
-						/>
-						<ProjectRow title="css art" bgColor="darkmagenta" />
+					<div
+						id="project-section"
+						style={{
+							display: "flex",
+							flexWrap: "wrap",
+							flexDirection: "row",
+							width: "100%",
+							height: "70%",
+						}}
+					>
+						<div
+							style={{
+								display: "flex",
+								flex: "1 1 40%",
+								height: "80%",
+								flexDirection: "column",
+								justifyContent: "center",
+							}}
+							onMouseLeave={() => setProjectToShow("")}
+						>
+							<ProjectRow
+								title="ascoltale"
+								bgColor="#000"
+								setProjectToShow={setProjectToShow}
+								cursorCircleRef={props.cursorCircleRef}
+								cursorDotRef={props.cursorDotRef}
+							/>
+							<ProjectRow
+								title="robot escape"
+								bgColor="blue"
+								setProjectToShow={setProjectToShow}
+								cursorCircleRef={props.cursorCircleRef}
+								cursorDotRef={props.cursorDotRef}
+							/>
+							<ProjectRow
+								title="side channel attack"
+								bgColor="pink"
+								setProjectToShow={setProjectToShow}
+								cursorCircleRef={props.cursorCircleRef}
+								cursorDotRef={props.cursorDotRef}
+							/>
+							<ProjectRow
+								title="css art"
+								bgColor="darkmagenta"
+								setProjectToShow={setProjectToShow}
+								cursorCircleRef={props.cursorCircleRef}
+								cursorDotRef={props.cursorDotRef}
+							/>
+						</div>
+						<div
+							id="project-to-show"
+							style={{
+								flex: "1 1 60%",
+								height: "90%",
+								width: "100%",
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								position: "relative",
+							}}
+						>
+							<ProjectCover projectToShow={projectToShow} />
+						</div>
 					</div>
 				</div>
-			</div>
+			</section>
 		</Html>
 	);
 };
 
-const Composition = () => {
+const Composition = ({ cursorCircleRef, cursorDotRef }) => {
 	const floating = false;
 	const scroll = useScroll();
 	const [top, setTop] = useState(scroll.offset);
@@ -207,7 +266,11 @@ const Composition = () => {
 
 	return (
 		<>
-			<HtmlContent top={top} />
+			<HtmlContent
+				top={top}
+				cursorDotRef={cursorDotRef}
+				cursorCircleRef={cursorCircleRef}
+			/>
 			<Tires floating={floating} />
 		</>
 	);
@@ -242,13 +305,14 @@ function Effects() {
 					bokehScale={50}
 					height={480}
 				/>
-				<Noise opacity={0.25} />
+				<Noise opacity={0.3} />
+				<Vignette eskil={false} offset={0.1} darkness={0.5} />
 			</EffectComposer>
 		</>
 	);
 }
 
-const Landing3D = () => {
+const Landing3D = ({ cursorDotRef, cursorCircleRef }) => {
 	return (
 		<Canvas
 			dpr={[1, 1]}
@@ -261,7 +325,10 @@ const Landing3D = () => {
 			<Suspense fallback={<CanvasFallback />}>
 				<color args={["#136EB2"]} attach="background" />
 				<ScrollControls pages={2} damping={5}>
-					<Composition />
+					<Composition
+						cursorDotRef={cursorDotRef}
+						cursorCircleRef={cursorCircleRef}
+					/>
 				</ScrollControls>
 				<Effects />
 				<Environment preset="sunset" />

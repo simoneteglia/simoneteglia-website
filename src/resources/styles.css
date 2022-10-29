@@ -16,17 +16,14 @@ a:hover {
 	background-color: yellow;
 }
 
-.project-card {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transition: font-size 0.1s linear;
-	font-size: 2em;
-	text-align: center;
+.show-project {
+	opacity: 0.9;
+	transform: scale(1);
 }
 
-.project-card-hover:hover {
-	font-size: 2em;
+.hide-project {
+	transform: scale(0.8);
+	opacity: 0;
 }
 
 .cursor-dot {
@@ -63,4 +60,31 @@ a:hover {
 	border-width: 0px;
 	background: rgba(5, 5, 5, 0.5);
 	mix-blend-mode: difference;
+}
+
+.soft-icon {
+	transition: all 0.4s ease-out;
+	opacity: 0;
+	animation: soft-icon-rotation 2s infinite linear;
+}
+
+@keyframes soft-icon-rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.project-row-text {
+	transition: all 0.4s ease-out;
+}
+
+.project-row:hover .soft-icon {
+	opacity: 1;
+}
+
+.project-row:hover .project-row-text {
+	transform: translateX(20px);
 }
