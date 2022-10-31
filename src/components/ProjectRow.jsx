@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import softIcon from "../resources/gifs/soft-icon.png";
+import { Link } from "react-router-dom";
 import "../resources/styles.css";
 
-export default function ProjectRow({
-	title,
-	bgColor,
-	setProjectToShow,
-	cursorCircleRef,
-	cursorDotRef,
-}) {
+export default function ProjectRow(
+	{ title, bgColor, setProjectToShow, cursorCircleRef, cursorDotRef, path },
+	context
+) {
 	return (
-		<div
+		<Link
+			to={path}
 			className="project-row"
 			style={{
 				fontSize: "1.8em",
@@ -19,6 +18,7 @@ export default function ProjectRow({
 				alignItems: "center",
 				height: "100px",
 				cursor: "pointer",
+				color: "yellow",
 			}}
 			onMouseEnter={() => {
 				setProjectToShow(title);
@@ -37,9 +37,14 @@ export default function ProjectRow({
 			}}
 		>
 			<p className="text project-row-text">
-				<img className="soft-icon" src={softIcon} width="50px" />
+				<img
+					className="soft-icon"
+					src={softIcon}
+					width="50px"
+					style={{ translate: "0 6px 0" }}
+				/>
 				{title}
 			</p>
-		</div>
+		</Link>
 	);
 }

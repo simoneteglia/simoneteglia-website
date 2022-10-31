@@ -78,7 +78,7 @@ a:hover {
 }
 
 .project-row-text {
-	transition: all 0.4s ease-out;
+	transition: all 0.5s cubic-bezier(0.175, 1, 0.32, 1.375);
 }
 
 .project-row:hover .soft-icon {
