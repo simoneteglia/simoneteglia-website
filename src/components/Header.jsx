@@ -19,7 +19,7 @@ export default function Header({ title }) {
 				position: "relative",
 			}}
 		>
-			<h1>{title}</h1>
+			<h1 className="text">{title}</h1>
 			<Link
 				to="/"
 				style={{ position: "absolute", left: "3vw", color: "yellow" }}

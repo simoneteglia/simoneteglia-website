@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ProjectRow from "./ProjectRow";
 import ProjectCover from "./ProjectCover";
 import global from "../resources/global.json";
+import { useEffect } from "react";
 const akiraFont = "Akira";
 
 export default function LandingHtml({
@@ -11,10 +12,14 @@ export default function LandingHtml({
 	setProjectToShow,
 	scrollRef,
 }) {
+	const mainContainerRef = useRef();
+	useEffect(() => {});
+
 	const [windowSize, setWindowSize] = useState(window.innerWidth);
 	return (
-		<>
+		<div>
 			<section
+				id="simone-teglia"
 				style={{
 					width: "100%",
 					height: "100vh",
@@ -59,6 +64,7 @@ export default function LandingHtml({
 				</div>
 			</section>
 			<section
+				id="whoami"
 				style={{
 					width: "100%",
 					height: "100vh",
@@ -103,6 +109,7 @@ export default function LandingHtml({
 				</div>
 			</section>
 			<section
+				id="works"
 				style={{
 					width: "100%",
 					height: "100vh",
@@ -210,6 +217,6 @@ export default function LandingHtml({
 					</div>
 				</div>
 			</section>
-		</>
+		</div>
 	);
 }
