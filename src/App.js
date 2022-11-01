@@ -25,6 +25,7 @@ export default function App() {
 				cursorDotRef={cursorDotRef}
 				cursorCircleRef={cursorCircleRef}
 			/>
+			<WIP />
 			<div
 				style={{
 					width: "100vw",
@@ -110,6 +111,31 @@ function Socials({ cursorDotRef, cursorCircleRef }) {
 					onMouseLeave={() => handleMouseLeave()}
 				/>
 			</a>
+		</div>
+	);
+}
+
+function WIP() {
+	return (
+		<div
+			style={{
+				position: "fixed",
+				top: 0,
+				left: 0,
+				height: "100vh",
+				width: "100vw",
+				color: "red",
+				opacity: 0.3,
+				fontSize: "4.5vw",
+				zIndex: 2000,
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
+				pointerEvents: "none",
+				rotate: "-30deg",
+			}}
+		>
+			<h1>WORK IN PROGRESS</h1>
 		</div>
 	);
 }
